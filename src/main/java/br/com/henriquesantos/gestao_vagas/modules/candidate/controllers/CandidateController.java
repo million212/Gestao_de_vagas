@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ public class CandidateController {
     private ProfileCandidateUseCase profileCandidateUseCase;
 
     @PostMapping("/")
+    @PreAuthorize("hasRole('CANDIDATE')")
     public ResponseEntity<Object> create(@Valid @RequestBody CandidateEntity candidateEntity) {
 
         try {
